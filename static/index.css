@@ -1,0 +1,195 @@
+/* Navbar background */
+nav.custom-navbar {
+  background-color: #1f2937; /* Tailwind slate-800, a nice dark shade */
+  transition: background-color 0.3s ease;
+}
+
+/* Navbar links */
+nav.custom-navbar .nav-link {
+  color: #f9fafb; /* light text */
+  transition: color 0.3s ease;
+}
+
+nav.custom-navbar .nav-link:hover {
+  color: #facc15; /* yellow-400 on hover */
+}
+
+/* Navbar brand text */
+nav.custom-navbar .navbar-brand span {
+  color: #f9fafb;
+  transition: color 0.3s ease;
+}
+
+nav.custom-navbar .navbar-brand:hover span {
+  color: #facc15;
+}
+
+/* Header / Hero background */
+.hero-bg {
+  background: linear-gradient(to right, #87CEFA, #00BFFF); /* Tailwind yellow-300 */
+  padding: 4rem 0;
+  text-align: center;
+}
+
+/* Optional: hero image border */
+.hero-bg img {
+  border-radius: 8px; /* adjust as you like */
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  margin-top: 30px; /* add space above the image */
+}
+
+/* Navbar Brand Hover */
+.navbar-brand:hover span {
+  color: #facc15; /* Tailwind's yellow-400 */
+}
+
+/* Navbar Link Hover */
+.nav-link:hover {
+  color: #facc15;
+  transition: color 0.3s ease-in-out;
+}
+
+/* Hero Button Hover */
+.hero-bg .btn {
+  background-color: linear-gradient(to right, #facc15, #d97706) !important; /* base yellow */
+  color: #333;
+  transition: background 0.3s ease, transform 0.3s ease;
+  border: none; /* override btn-warning border if needed */
+}
+
+.hero-bg .btn:hover {
+  background: linear-gradient(to right, #facc15, #d97706) !important;
+  color: #222;
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(217, 119, 6, 0.5);
+}
+
+/*About Me */
+  #about {
+    background-color: white;
+    border: 2px solid transparent;
+    padding: 2rem 1rem;
+    border-radius: 8px;
+    box-shadow: 0 0 0 transparent;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    cursor: default;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  #about:hover {
+    background-color: #f0f8ff;
+    border-color: #38a;
+    box-shadow: 0 8px 20px rgba(56, 136, 255, 0.25);
+  }
+
+/* Project Cards Hover */
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+/* Skill Buttons Hover */
+#skills .btn:hover {
+  background-color: #facc15;
+  color: #000;
+  transform: scale(1.05);
+  transition: all 0.2s ease-in-out;
+}
+
+/* Internships Hover */
+#internships {
+  background-color: #fffbea;
+  border-color: #facc15;
+  transform: scale(1.03);
+  transition: all 0.3s ease-in-out;
+}
+
+.card-hover {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6); /* semi-transparent black */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 3; /* Higher than card-content */
+  pointer-events: none; /* disable clicks when hidden */
+}
+
+.card-hover:hover .card-overlay {
+  opacity: 1;
+  pointer-events: auto; /* enable clicks when visible */
+}
+
+.card-content {
+  position: relative;
+  z-index: 2; /* below overlay */
+  transition: opacity 0.3s ease;
+}
+
+.card-hover:hover .card-content {
+  opacity: 0;
+}
+
+.card-overlay button, 
+.card-overlay a.btn-pop {
+  z-index: 4;
+}
+
+.btn-pop {
+  background-color: #4CAF50;
+  color: white;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-pop:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  background-color: #45a049;
+  text-decoration: none;
+}
+
+/* Education Hover */
+.education-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.education-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Contact Icons Hover */
+#contact a:hover i {
+  transform: scale(1.2);
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Footer Hover */
+footer:hover {
+  background-color: #111827; /* dark slate */
+  transition: background-color 0.3s ease;
+}
+
