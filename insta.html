@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Real-Time Messaging App | Giri</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(135deg, #f83600, #f9d423);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .btn-home {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    header h1 {
+      font-weight: bold;
+      font-size: 2.3rem;
+    }
+
+    .content-wrapper {
+      max-width: 850px;
+      width: 90%;
+      margin: 0 auto;
+      padding: 30px 0;
+    }
+
+    .summary, .img-card {
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      background: #fefefe;
+      padding: 20px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .summary:hover, .img-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      cursor: pointer;
+    }
+
+    .img-card img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .img-card p, .summary {
+      font-size: 1rem;
+      color: #333;
+      text-align: center;
+    }
+
+    .code-btn {
+      text-align: center;
+      margin: 20px auto 50px;
+    }
+
+    footer {
+      background: #222;
+      color: #ccc;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: auto;
+      width: 100%;
+    }
+
+    @media (max-width: 576px) {
+      header h1 {
+        font-size: 1.6rem;
+      }
+
+      .img-card p, .summary {
+        font-size: 0.95rem;
+        padding: 15px;
+      }
+
+      .img-card img {
+        margin-bottom: 10px;
+      }
+
+      .btn-home {
+        font-size: 0.8rem;
+        padding: 4px 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <a href="index.html" class="btn btn-light btn-sm btn-home">← Back to Home</a>
+  <h1>Real-Time Messaging App</h1>
+</header>
+
+<!-- Main Content Wrapper -->
+<div class="content-wrapper">
+
+  <!-- Summary -->
+  <div class="summary">
+    Developed a full-stack messaging application inspired by Instagram Direct using the MERN stack (MongoDB, Express.js, React, Node.js).<br><br>
+    Implemented real-time communication using Socket.IO, secured user authentication with JWT, and created a responsive front-end that mimics Instagram's design and user experience. Each feature—from login to chat—was carefully crafted to support seamless, mobile-first interaction with efficient backend data handling and persistent chat storage.
+  </div>
+
+  <!-- Image 1: Login Page -->
+  <div class="img-card">
+    <img src="static/images/il.jpg" alt="Login Page" />
+    <p>
+      <strong>🔐 Secure Login & Signup Interface:</strong><br>
+      Mimics Instagram’s sleek authentication page. Built with React and styled-components, this screen allows users to securely log in or register using form validation, with responsive layout and visual feedback.
+    </p>
+  </div>
+
+  <!-- Image 2: Explore Page -->
+  <div class="img-card">
+    <img src="static/images/id.jpg" alt="Explore Page" />
+    <img src="static/images/id1.jpg" alt="Feed"/>
+    <p>
+      <strong>🌐 Explore & Post Browsing Section:</strong><br>
+      A visually rich layout inspired by Instagram’s feed and explore tab. Designed using Flexbox and Grid to showcase posts from users, support interactions like likes/comments, and adapt beautifully across devices.
+    </p>
+  </div>
+
+  <!-- Image 3: Messaging UI -->
+  <div class="img-card">
+    <img src="static/images/mes.jpg" alt="Chat Feed" />
+    <p>
+      <strong>💬 Live Chat Conversation Feed:</strong><br>
+      Enables real-time messaging using Socket.IO. The chat feed includes timestamps, scroll-to-latest, and consistent user bubbles — delivering an experience nearly identical to Instagram DMs.
+    </p>
+  </div>
+
+  <!-- Code Button -->
+  <div class="code-btn">
+    <a href="https://github.com/GirivardhanNalluri/Instagram-Clone" target="_blank" class="btn btn-outline-primary">
+      <i class="fas fa-code"></i> View Code on GitHub
+    </a>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<footer>
+  &copy; 2025 Girivardhan Nalluri. | All rights reserved.
+</footer>
+
+</body>
+</html>

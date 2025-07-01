@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Earthquake Detection | Giri</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .popup-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    .popup {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      width: 90%;
+      max-width: 400px;
+    }
+
+    .video-box {
+      position: relative;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 30px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      background-size: cover;
+      background-position: center;
+      height: 250px;
+      display: flex;
+      align-items: end;
+      justify-content: center;
+      color: white;
+      overflow: hidden;
+    }
+
+    .video-box h5 {
+      background: rgba(0,0,0,0.6);
+      padding: 8px 16px;
+      border-radius: 6px;
+      z-index: 2;
+      margin-bottom: 10px;
+    }
+
+    .video-box video {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    .video-sample {
+      background-image: url('static/images/sample.jpg');
+    }
+
+    .video-full {
+      background-image: url('static/images/sample.gif');    }
+
+    .video-box:hover {
+      transform: scale(1.02);
+    }
+
+    .modal-video-container {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0, 0, 0, 0.9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      flex-direction: column;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .modal-video {
+      max-width: 90%;
+      max-height: 80%;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      background: #dc3545;
+      color: white;
+      border: none;
+      font-size: 24px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 10001;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 767px) {
+      .video-box {
+        height: 200px;
+      }
+
+      .video-box h5 {
+        font-size: 14px;
+      }
+
+      .container {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+
+      .popup {
+        padding: 20px;
+      }
+
+      .modal-video {
+        width: 100%;
+        height: auto;
+      }
+
+      header h2 {
+        font-size: 18px;
+      }
+    }
+
+    /* Large screen adjustments */
+    @media (min-width: 768px) {
+      header h2 {
+        font-size: 24px;
+      }
+    }
+.hover-effect-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #e0e0e0;
+  background-color: #ffffff;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.hover-effect-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9fc;
+}
+  </style>
+</head>
+<body>
+<!-- Gradient Header -->
+<header class="py-4 text-white text-center" style="background: linear-gradient(90deg, #007cf0, #00dfd8);">
+  <div class="container d-flex justify-content-between align-items-center flex-wrap">
+    <h2 class="m-0">🌍 Real-Time Earthquake Detection and Intensity Forecasting System</h2>
+    <a href="index.html" class="btn btn-light text-dark fw-semibold">← Return to Home</a>
+  </div>
+</header>
+
+<!-- Project Summary Container -->
+<section class="container my-4">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <div class="card hover-effect-card p-4 shadow-sm text-center">
+        <h5 class="mb-3 text-primary">📘 Project Summary</h5>
+        <p class="lead mb-0 text-dark">
+          Developed a predictive system to monitor earthquake activity and forecast intensity over the next 3 hours using
+          <strong>LSTM</strong>. Applied data preprocessing and model training using <strong>Pandas</strong>,
+          <strong>NumPy</strong>, <strong>Scikit-learn</strong>, <strong>Keras</strong>, and <strong>TensorFlow</strong>.
+          Integrated the model with a web interface using <strong>Flask</strong> and <strong>MySQL</strong>, and visualized
+          real-time data through <strong>Matplotlib</strong> for timely alert generation.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Landing Popup -->
+<div class="popup-overlay" id="landingPopup">
+  <div class="popup">
+    <h4>Select an Option</h4>
+    <form id="popupForm">
+      <div class="form-check text-start my-2">
+        <input type="radio" class="form-check-input" name="option" value="video" required>
+        <label class="form-check-label">Watch Demo Video</label>
+      </div>
+      <div class="form-check text-start">
+        <input type="radio" class="form-check-input" name="option" value="code">
+        <label class="form-check-label">View Code</label>
+      </div>
+      <button type="submit" class="btn btn-primary w-100 mt-3">Continue</button>
+    </form>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="container py-5 text-center" id="mainContent" style="display:none;">
+  <h4 class="text-muted mb-4">Explore the demo videos below</h4>
+
+  <div class="row">
+    <!-- Sample Video -->
+    <div class="col-md-6">
+      <div class="video-box video-sample" onclick="openVideo('static/images/e1.mp4')">
+        <h5>Sample</h5>
+        <video src="static/images/e1.mp4" muted autoplay loop></video>
+      </div>
+    </div>
+
+    <!-- Full Video -->
+    <div class="col-md-6">
+      <div class="video-box video-full" onclick="openVideo('static/images/e2.mp4')">
+        <h5>Full Video</h5>
+        <video src="static/images/e2.mp4" muted autoplay loop></video>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Video Fullscreen Modal -->
+<div class="modal-video-container" id="videoModal">
+  <button class="close-btn" onclick="closeVideo()">×</button>
+  <video id="modalVideo" class="modal-video" controls autoplay></video>
+</div>
+
+<div id="viewpublicationBtn" class="mt-4 text-center" style="display: none;">
+  <a href="https://www.scilit.com/publications/575b54c1b824b23efd858ef580477e57" target="_blank" class="btn btn-outline-primary">
+    📄 View Publication
+  </a>
+</div>
+
+<!-- View Code Button (initially hidden) -->
+<div id="viewCodeBtn" class="mt-4 text-center" style="display: none;">
+  <a href="https://github.com/GirivardhanNalluri/Major-Project" target="_blank" class="btn btn-outline-primary">
+    📄 View Code
+  </a>
+</div>
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-3 mt-5">
+  <div class="container">
+    <p class="mb-0">&copy; 2025 Girivardhan. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<!-- JS Logic -->
+<script>
+  document.getElementById("popupForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const selected = document.querySelector('input[name="option"]:checked').value;
+    document.getElementById("landingPopup").style.display = "none";
+
+    if (selected === "video") {
+      document.getElementById("mainContent").style.display = "block";
+      document.getElementById("viewCodeBtn").style.display = "block";
+      document.getElementById("viewpublicationBtn").style.display = "block";
+    } else {
+      window.location.href = "https://github.com/GirivardhanNalluri/Major-Project";
+    }
+  });
+
+  function openVideo(src) {
+    const modal = document.getElementById("videoModal");
+    const video = document.getElementById("modalVideo");
+    video.src = src;
+    modal.style.display = "flex";
+    video.play();
+  }
+
+  function closeVideo() {
+    const modal = document.getElementById("videoModal");
+    const video = document.getElementById("modalVideo");
+    video.pause();
+    video.src = "";
+    modal.style.display = "none";
+  }
+</script>
+
+</body>
+</html>
